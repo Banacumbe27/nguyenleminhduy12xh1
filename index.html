@@ -1,0 +1,655 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Các phong tục Tết</title>
+</head>
+<style>
+    body {
+    background: linear-gradient(to bottom, black 0%, darkblue 100%);
+    margin: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow-x: hidden;
+}
+body>*{
+    user-select: none;
+}
+body p{
+    user-select: none;
+}
+section{
+    width:100vw;
+    height:100vh;
+}
+.section_container{
+    position:fixed;
+    top:0;
+    display:flex;
+    flex-direction: column;
+    justify-items:center;
+    width:100vw;
+    height:fit-content;
+    transition:0.5s;
+}
+.intro {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+
+.intro-text {
+    position:fixed;
+    color: yellow;
+    font-size: 5em;
+    background: none;
+    transform:translateY(-50%);
+    text-align: center;
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+    animation: 2s ease-in fade-in forwards;
+    user-select: none;
+}
+.next-button {
+  position:fixed;
+  background-color: beige;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  top:80vh;
+  border-radius: 16px;
+  font-size: 4vmax;
+  z-index:1000;
+  display:flex;
+  flex-direction: column;   
+  justify-items: center; 
+  transition:width 0.5s,scale 0.1s,transform 0.5s;
+  width:5vmax;
+  height:10vmax;
+  opacity:1;
+  /*animation:2s ease-in fade-in forwards;*/
+  animation-delay: 1s;
+}
+.next-button p{
+    font-size: 3vmax;
+    font-weight:bold;
+    color:black;
+    display:none;
+    pointer-events: none;
+}
+.next-button:hover{
+    width:80vw;
+    height:20vh;
+    cursor:pointer;
+}
+.next-button:active{
+    scale:0.8;
+}
+.next-button:hover .arrows{
+    display:none;
+}
+.next-button:hover p{
+    display:block;
+}
+.back-button {
+  position:fixed;
+  background-color: beige;
+  border: none;
+  color: black;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  top:-11vh;
+  border-radius: 16px;
+  font-size: 4vmax;
+  z-index:1000;
+  display:flex;
+  flex-direction: column;   
+  justify-items: center; 
+  transition:width 0.5s,scale 0.1s,transform 0.5s;
+  width:5vmax;
+  height:10vmax;
+  opacity:1;
+  /*animation:2s ease-in fade-in forwards;*/
+  animation-delay: 1s;
+  display:none;
+}
+.back-button p{
+    font-size: 3vmax;
+    font-weight:bold;
+    color:black;
+    display:none;
+    pointer-events: none;
+}
+.back-button:hover{
+    width:80vw;
+    height:20vh;
+    transform:translateY(10vh);
+    cursor:pointer;
+}
+.back-button:active{
+    scale:0.8;
+}
+.back-button:hover .arrows{
+    display:none;
+}
+.back-button:hover p{
+    display:block;
+}
+
+.arrows{
+            position:absolute;
+            left:50%;
+            transform:translateX(-50%);
+            height:fit-content;
+            width:fit-content;
+            align-content: center;
+   
+        }
+        .arrows span{/*scroll indicator arrows*/
+            display:block;
+            width:2.5vmax;
+            height:2.5vmax;
+            border-bottom:10px solid black;
+            border-right:10px solid black;
+            transform:rotate(45deg);
+            animation:2s scroll-indicate infinite;
+        }
+        .arrows span:nth-child(2){
+            animation-delay:-.2s;
+        }
+        .arrows span:nth-child(1){
+            animation-delay:-.4s;
+        }
+        @keyframes scroll-indicate{
+            0%{
+                opacity:0;
+                transform:translateY(0%) rotate(45deg);
+
+            }
+            50%{
+                opacity:1;
+                transform:translateY(20%) rotate(45deg);
+            }
+            100%{
+                opacity:0;
+                transform:translateY(0%) rotate(45deg);
+
+            }
+        }
+        
+@keyframes fade-in {
+    from{
+        opacity:0;
+        pointer-events: none;
+    }
+    to{
+        opacity:1;
+        pointer-events: auto;
+    }
+}
+
+
+.lixi-about {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.half-container {
+    width: 50vw;
+    height: 100vh;
+}
+.baolixi{
+    width:15vmax;
+    height:30vmax;
+    background:red;
+    margin-top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%,-50%);
+    font-size: 2vmax;
+    color:white;
+    text-align: center;
+    cursor:pointer;
+    z-index:10;
+    animation:2s pulse infinite;
+}
+.baolixi-money{
+    margin-top: 50%;
+    margin-left: 50%;
+    transform: translate(-50%,-50%);
+    width:15vmax;
+    height:30vmax;
+    background:url('500k.png');
+    background-size: cover;
+    z-index:5;
+    display:none;
+    transition-duration: 0.5s;
+}
+.baolixi:hover{
+    animation:none;
+}
+.baolixi:hover .baolixi-flap{
+    transform:rotateX(-180deg) translateY(200%);
+}
+@keyframes shake{
+    0%{
+        transform:rotate(45deg);
+    }
+    10%{
+        transform:rotate(-45deg);
+
+    }
+    20%{
+        transform:rotate(45deg);
+
+    }
+    30%{
+        transform:rotate(-45deg);
+
+    }
+    40%{
+        transform:rotate(45deg);
+
+    }
+    50%{
+        transform:rotate(-45deg);
+
+    }
+    60%{
+        transform:rotate(45deg);
+
+    }
+    70%{
+        transform:rotate(-45deg);
+
+    }
+    80%{
+        transform:rotate(45deg);
+
+    }
+    90%{
+        transform:rotate(-45deg);
+
+    }
+    100%{
+        transform:rotate(45deg);
+
+    }
+}
+@keyframes pulse{
+    0%{
+        scale:0.8;
+    }
+    50%{
+        scale:1;
+    }
+    100%{
+        scale:0.8;
+    }
+}
+@keyframes materialize{
+    0%{
+        filter:blur(50px);
+        -webkit-filter:blur(50px);
+    }
+    0%{
+        filter:blur(0px);
+        -webkit-filter:blur(0px);
+    }
+}
+.baolixi-flap{
+    width:9vmax;
+    margin:none;
+    height:0;
+    border-top:6vmax solid darkred;
+    border-left:3vmax solid transparent;
+    border-right:3vmax solid transparent;
+    transform-style: preserve-3d;
+    transform-origin: bottom;
+}
+
+.lixi-text {
+    margin:none;
+    margin-top:5vmax;
+    color: white;
+    font-size: 3vmax;
+    width: 50vw;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+}
+.food-nhande{
+    font-size:4vmax;
+    color:white;
+}
+.imgslider{
+    height:fit-content;
+    width:50vw;
+    transition:0.5s;
+}
+.about-food{
+    color:white;
+    font-size:3vmax;
+    margin-left:50vw;
+    transform:translateY(-100vh);
+}
+.about-food a{
+    background:yellow;
+    color:red;
+    font-size:3.5vmax;
+    margin-left:5vmax;
+    margin-top:-5vmax;
+}
+.imgslider img{
+    width:50vw;
+    height:30vw;
+    margin-top:10vh;
+}
+.chuctet,.chuctet >*{
+    color:white;
+    font-size: 2.5vmax;
+    margin-left: 50%;
+    transform:translateX(-50%);
+    text-align: center;
+}
+.chuctet-slider{
+display: flex;
+flex-direction: row;
+height:100vh;
+width:fit-content;
+transform:translateX(-150vw);
+transition: 0.5s;
+}
+.chuctet-about{
+    width:50vw;
+    height:100vh;
+}
+.chuctet-section{
+    width:125vw;
+    height:100vh;
+    background:red;
+    cursor:pointer;
+    transition:0.1s;
+}
+
+
+.chuctet-collection{
+    border-top-right-radius: 15%;
+}
+
+.chuctet-generator{
+    border-bottom-left-radius: 15%;
+}
+
+.chuctet-peek{
+    color:gold;
+    font-size:4vmax;
+    margin-top:50vh;
+    font-weight: bolder;
+    pointer-events: none;
+}
+.chuctet-content{
+    font-size: 3vmax;
+    color:black;
+    margin-right:25vw;
+    margin-top:15vh;
+}
+.chuctet-section a{
+    font-size: 4vmax;
+}
+.generator{
+    color:black;
+    font-size:5vmax;
+    margin-left:25vw;
+    margin-top:-50vh;
+}
+.generator select{
+    font-size:4vmax;
+    width:20vw;
+}
+.progress-bar{
+    width:5vmax;
+    height:0%;
+    position:fixed;
+    right:0;
+    top:0;
+    background:lime;
+    border:1px solid black;
+    border-radius: 2%;
+    z-index:1000;
+    transition:0.5s;
+    opacity:0.3;
+    color:white;
+    font-size: 4vmax;
+    text-align: center;
+}
+.progress-bar pre{
+    transform:translateY(-10%);
+}
+.mamnguqua>*{
+    font-size:3vmax;
+    color:white;
+}
+.theend{
+    font-size:3vmax;
+    color:white;
+}
+.circle {
+  --circle-size: 40px;
+  position: fixed;
+  height: var(--circle-size);
+  width: var(--circle-size);
+  border: 0.5vmax solid white;
+  border-radius: 100%;
+  top: calc(var(--circle-size) / 2 * -1);
+  left: calc(var(--circle-size) / 2 * -1);
+  pointer-events: none;
+  z-index:1000;
+}
+</style>
+<body>
+    <div class="circle"></div>
+    <div class="progress-bar"><pre>
+0
+%
+P
+R
+O
+G
+R
+E
+S
+S
+    </pre></div>
+    <div class="back-button" onclick="navigate(0)">
+        <div class="arrows" style="transform:rotate(180deg) translateX(50%);">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+    <p id="backlabel">back button</p>
+    </div>
+    <div class="next-button" onclick="navigate(1)"> 
+         <div class="arrows">
+        <span></span>
+        <span></span>
+        <span></span>
+    </div>
+    <p id="nextlabel">Tết còn có những phong tục nào nhỉ? (Click me!)</p>
+</div>
+<div class="section_container">
+    <section class="intro">
+    <canvas id="canvas"></canvas>
+        <div class="intro-text">Chúc mừng Tết nguyên đán 2025
+        </div>
+    <h1 style="color:red;font-size: 5vmax;margin-top:50vh;z-index:1000;position:absolute;animation:3s fade-in forwards;animation-delay: 2s;opacity:0;">Click nút trắng để xuống trang!</h1>
+    </section>
+    <section class="lixi">
+            <div class="lixi-about">
+                <div class="half-container">
+                <img class="baolixi-money">
+
+                <div class="baolixi" onclick="openlixi()">
+                    <div class="baolixi-flap"></div>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    MỞ LÌ XÌ NÈ(click)</div>
+                </div>
+
+                <div class="half-container">
+                <div class="lixi-text"><h1>Lì xì</h1>
+                    Lì xì là một bao thư tiền được người lớn tặng trẻ con<br>
+                    Hoặc con cái tặng cha mẹ (gọi là mừng tuổi)
+                    <br>
+
+                    Đây là một phong tục đã có từ rất lâu.
+                    Bao lì xì không chỉ mang giá trị vật chất mà còn là một lời chúc may mắn tốt đẹp dành cho người nhận.
+                </div>
+                </div>
+            </div>
+    </section>
+    <section class="food">
+        <div class="food-nhande" >Ẩm thực ngày Tết</div>
+       <div class="half-container" style="overflow:hidden">
+        <div class="imgslider" id="imgslider">
+        
+        </div>
+       </div>
+        <div  class="about-food"><h1 id="food_name"></h1>
+            <pre id="food_desc">
+            </pre>
+        <a href="javascript:nav_foodGallery(0)">Món trước</a>
+        <a href="javascript:nav_foodGallery(1)">Món kế</a>
+        </div>
+    </section>
+    <section class="chuctet">
+        <div class="chuctet-slider">
+            <div class="chuctet-collection chuctet-section" onclick="nav_chuctet_slider(0)">
+                <div class="chuctet-content">1.Tiền vô như nước sông Đà, tiền ra rỉ rả như cà phê phin.
+                    <br>
+                    2.Sức khỏe vô biên, tiền nhiều vô kể, xóm làng đều nể.
+                    <br>
+                    3.Chúc bạn và gia đình một năm mới luôn vui vẻ, hạnh phúc, an khang, phú quý, thái bình, trăm tuổi - nhiều năm - sống lâu.
+                    <br>
+                    4.Chúc cho một năm mới vạn sự như ý, phát tài phát lộc.
+                    <br>
+                    5.Chúc sống lâu trăm tuổi.
+                    <a href="javascript:nav_chuctet_slider(1)">QUAY VỀ</a>
+                </div>
+                <div class="chuctet-peek" style="margin-left:100vw;margin-top:-50vh;" >Top những lời chúc Tết độc đáo.
+                    <br>
+                    <<<<
+                </div>
+
+            </div>
+            <div class="chuctet-about">
+        <h1 style="margin-top: 20vh;">Chúc Tết</h1>
+        <p>Vào dịp Tết người ta trao nhau những điều ước tốt đẹp </p>
+        <P>Đây cũng là điều phải làm trước khi nhận lì xì</P>
+        <p>Click cánh trái hoặc cánh phải để tìm hiểu thêm!</p>
+            </div>
+            <div class="chuctet-generator chuctet-section"onclick="nav_chuctet_slider(1)">
+                <div class="chuctet-peek" style="transform:translateX(-50vw)">Phần mềm tạo<br> lời chúc
+                    <br>
+                >>>>
+                </div>
+                <div class="generator" >
+                    Nhân dịp năm mới 
+                    <select id="xungho">
+                        <option value="mình">mình</option>
+                        <option value="tôi">tôi</option>
+                        <option value="tao">tao</option>
+                        <option value="anh">anh</option>
+                        <option value="em">em</option>
+                        <option value="chú">chú</option>
+                        <option value="bác">bác</option>
+                        <option value="ông">ông</option>
+                        <option value="ông">bà</option>
+                        <option value="cô">cô</option>
+                        <option value="cô">anh</option>
+                        <option value="chị">chị</option>
+                        <option value="em">em</option>
+                        <option value="bạn">bạn</option>
+                    </select>
+                    
+                    <select id="prefix">
+                        <option value="thân">thân</option>
+                        <option value="kính">kính</option>
+                        <option value="xin">xin</option>
+                    </select>
+                    chúc
+                    <select id="chucai">
+                        <option value="bạn">bạn</option>
+                        <option value="chú">chú</option>
+                        <option value="bác">bác</option>
+                        <option value="ông">ông</option>
+                        <option value="ông">bà</option>
+                        <option value="cô">cô</option>
+                        <option value="cô">anh</option>
+                        <option value="chị">chị</option>
+                        <option value="em">em</option>
+                        <option value="mày">mày</option>
+                        <option value="con">con</option>
+                    </select>
+                    
+                    <select id="loichuc-prefix">
+                        <option value="vạn sự">vạn sự</option>
+                        <option value="thật nhiều">thật nhiều</option>
+                        <option value="tràn đầy">tràn đầy</option>
+                        <option value="chỉ toàn">chỉ toàn</option>
+                        <option value="chỉ toàn">cuộc sống</option>
+                    </select>
+                    <select id="loichuc-affix">
+                        <option value="như ý">như ý</option>
+                        <option value="cát tường">cát tường</option>
+                        <option value="hanh thông">hanh thông</option>
+                        <option value="hạnh phúc">hạnh phúc</option>
+                        <option value="vui vẻ">vui vẻ</option>
+                    </select>
+                    .<a href="javascript:chuctet_copy()">Copy</a>
+                    <p id="chuctet_random" style="font-size: 3.5vmax;">Click randomize bên dưới để tạo lời chúc</p>
+                    <a href="javascript:nav_chuctet_slider(0)">
+                        <<<<
+                        Quay về</a>
+                    <a href="javascript:chuctet_random()">Randomize</a>
+                    <a href="javascript:copy_random()">Copy lời chúc random</a>
+                </div>
+            </div>
+
+        </div>
+    </section>
+    <section class="mamnguqua">
+        <img src="mamnguqua.webp" style="margin-left:50%;transform:translateX(-50%);margin-top:10vh;margin-bottom:0;">
+        <h1 style="margin-left:50%;transform:translateX(-25%);margin-top:-2vh;">Mâm ngũ quả</h1>
+        <p>Là một mâm trái cây mà các loại trái cây tượng trưng cho điều ước của người cúng</p>
+        <p>Ví dụ: Mãng cầu, dừa, đu đủ, xoài => "Cầu vừa đủ xài"</p>
+    </section>
+    <section class="theend">
+        <h1>Lời Kết</h1>
+        <p>Tết Nguyên Đán là một ngày lễ đẹp khi mà mọi người sum vầy bên nhau nghỉ ngơi sau một năm bận rộn và trao nhau những lời chúc tốt đẹp.</p>
+        <p>Em cảm ơn thầy đã xem tới đây ạ :)</p>
+        <p>Made by Duy Nguyễn with <3</p><a href="https://github.com/banacumbe27" style="color:cyan">Follow me on github</a>
+    </section>
+</div>
+</body>
+<script src="cursor.js"></script><!--cục tròn đi theo con chuột!-->
+<script src="phaobong.js"></script>
+<script src="main.js"></script>
+</html>
