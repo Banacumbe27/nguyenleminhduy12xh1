@@ -1,3 +1,17 @@
+let details = navigator.userAgent; 
+let regexp = /android|iphone|kindle|ipad/i; 
+let isMobileDevice = regexp.test(details); 
+  
+if (isMobileDevice) { 
+    document.querySelector('.screen-cover').style.display='block'; 
+} else { 
+    console.log("You are using Desktop"); 
+}
+
+
+
+
+
 let section_container=document.querySelector('.section_container');
 let sections=document.querySelectorAll('section');
 let nextlabel=document.querySelector('#nextlabel');
