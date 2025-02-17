@@ -4,8 +4,6 @@ let isMobileDevice = regexp.test(details);
   
 if (isMobileDevice) { 
     document.querySelector('.screen-cover').style.display='block'; 
-} else { 
-    console.log("You are using Desktop"); 
 }
 
 
@@ -155,7 +153,10 @@ function copy_random(){
         );
 }
 
-
+window.onkeyup=(e)=>{
+    if(e.key=='ArrowDown')navigate(1);
+    if(e.key=='ArrowUp')navigate(0);
+};
 
 
 
